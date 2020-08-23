@@ -29,6 +29,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,10 +88,6 @@ public class MainActivity extends AppCompatActivity {
         btnUpload = findViewById(R.id.uploadDP);
         mPBar = findViewById(R.id.loading);
         imageView = findViewById(R.id.avatar);
-
-        // get the Firebase  storage reference
-        //storage = FirebaseStorage.getInstance();
-       // storageReference = storage.getReference();
 
         // on pressing btnSelect SelectImage() is called
         btnSelect.setOnClickListener(new View.OnClickListener() {

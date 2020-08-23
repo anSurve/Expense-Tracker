@@ -111,12 +111,12 @@ public class signup extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(signup.this, "Successfully Signed Up", Toast.LENGTH_SHORT);
+                                    Toast.makeText(signup.this, "Successfully Signed Up", Toast.LENGTH_SHORT).show();
 
                                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                     finish();
                                 } else {
-                                    Toast.makeText(signup.this, "Signed Up failed", Toast.LENGTH_SHORT);
+                                    Toast.makeText(signup.this, "Signed Up failed", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -124,7 +124,7 @@ public class signup extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(signup.this, "Could not add user to the db", Toast.LENGTH_SHORT);
+                        Toast.makeText(signup.this, "Could not add user to the db", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
