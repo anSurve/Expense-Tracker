@@ -1,16 +1,16 @@
-package com.example.expensetracker.ui.earnExpense;
+package com.example.expensetracker.ui.Investments;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class EarnExpenseViewModel extends ViewModel {
+public class InvestmentsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public EarnExpenseViewModel() {
+    public InvestmentsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is earn/expense fragment");
+        mText.setValue("This is investments fragment");
     }
 
     public LiveData<String> getText() {

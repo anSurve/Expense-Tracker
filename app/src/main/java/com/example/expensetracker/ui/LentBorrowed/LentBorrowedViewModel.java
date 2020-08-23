@@ -1,16 +1,15 @@
-package com.example.expensetracker.ui.slideshow;
+package com.example.expensetracker.ui.LentBorrowed;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
-
+public class LentBorrowedViewModel extends ViewModel {
     private MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public LentBorrowedViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is lent-borrowed fragment");
     }
 
     public LiveData<String> getText() {

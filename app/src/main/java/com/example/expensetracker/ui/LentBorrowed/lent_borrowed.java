@@ -1,4 +1,4 @@
-package com.example.expensetracker.ui.earnExpense;
+package com.example.expensetracker.ui.LentBorrowed;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -15,18 +15,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.expensetracker.R;
+import com.example.expensetracker.ui.Investments.InvestmentsViewModel;
 
-public class earnExpense extends Fragment {
+public class lent_borrowed extends Fragment {
 
-    private EarnExpenseViewModel mViewModel;
+    private LentBorrowedViewModel mViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel =
-                ViewModelProviders.of(this).get(EarnExpenseViewModel.class);
-        View root =  inflater.inflate(R.layout.earn_expense_fragment, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+                ViewModelProviders.of(this).get(LentBorrowedViewModel.class);
+        View root =  inflater.inflate(R.layout.lent_borrowed_fragment, container, false);
+        final TextView textView = root.findViewById(R.id.text_lent_borrowed);
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -35,4 +36,5 @@ public class earnExpense extends Fragment {
         });
         return root;
     }
+
 }

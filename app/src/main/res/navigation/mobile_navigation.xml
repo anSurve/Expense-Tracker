@@ -13,27 +13,27 @@
 
     <fragment
         android:id="@+id/nav_e_e"
-        android:name="com.example.expensetracker.ui.Earn_Expense"
-        android:label="@string/earning_exepnse"
-        tools:layout="@layout/fragment_earn__expense" />
+        android:name="com.example.expensetracker.ui.earnExpense.earnExpense"
+        android:label="@string/earning_expense"
+        tools:layout="@layout/earn_expense_fragment" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.expensetracker.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_investments"
+        android:name="com.example.expensetracker.ui.Investments.Investments"
+        android:label="@string/menu_investments"
+        tools:layout="@layout/investments_fragment" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.expensetracker.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_lent_borrowed"
+        android:name="com.example.expensetracker.ui.LentBorrowed.lent_borrowed"
+        android:label="@string/menu_lent_borrowed"
+        tools:layout="@layout/lent_borrowed_fragment" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.expensetracker.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:id="@+id/nav_categories"
+        android:name="com.example.expensetracker.ui.Categories.Categories"
+        android:label="@string/menu_Categories"
+        tools:layout="@layout/categories_fragment" />
 
     <fragment
         android:id="@+id/nav_share"
@@ -46,4 +46,10 @@
         android:name="com.example.expensetracker.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_sign_out"
+        android:name="com.example.expensetracker.ui.SignOut"
+        android:label="@string/menu_sign_out"
+        tools:layout="@layout/fragment_sign_out" />
 </navigation>

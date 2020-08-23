@@ -1,4 +1,4 @@
-package com.example.expensetracker.ui.earnExpense;
+package com.example.expensetracker.ui.Investments;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -16,17 +16,17 @@ import android.widget.TextView;
 
 import com.example.expensetracker.R;
 
-public class earnExpense extends Fragment {
+public class Investments extends Fragment {
 
-    private EarnExpenseViewModel mViewModel;
+    private InvestmentsViewModel mViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel =
-                ViewModelProviders.of(this).get(EarnExpenseViewModel.class);
-        View root =  inflater.inflate(R.layout.earn_expense_fragment, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+                ViewModelProviders.of(this).get(InvestmentsViewModel.class);
+        View root =  inflater.inflate(R.layout.investments_fragment, container, false);
+        final TextView textView = root.findViewById(R.id.text_investments);
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -35,4 +35,5 @@ public class earnExpense extends Fragment {
         });
         return root;
     }
+
 }

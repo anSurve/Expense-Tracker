@@ -32,12 +32,22 @@
     <string name="selectDP">Select a DP</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
-    <string name="earning_exepnse">"Earning/Expenses"</string>
+    <string name="earning_expense">"Earnings / Expenses"</string>
+    <string name="earning_exepnse">"Earnings / Expenses"</string>
+    <string name="menu_investments">Investments</string>
+    <string name="menu_lent_borrowed">Lent / Borrowed Money</string>
+    <string name="menu_Categories">Categories</string>
+    <string name="menu_sign_out">Sign Out</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="add_expense">"Add Expenditure"</string>
+    <string name="add_earning">"Add Earnings"</string>
+    <string name="add_investments">"Add Investments"</string>
+    <string name="add_lent">"Add Lent Money"</string>
+    <string name="add_borrowed">"Add Borrowed Money"</string>
 </resources>

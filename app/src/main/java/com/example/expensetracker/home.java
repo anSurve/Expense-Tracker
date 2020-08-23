@@ -59,45 +59,35 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), login.class));
-                Toast.makeText(home.this, "Signing Out !!", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_home, R.id.nav_e_e, R.id.nav_investments,
+                R.id.nav_lent_borrowed,R.id.nav_categories, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         fDb = FirebaseFirestore.getInstance();
-
         navigationView = findViewById(R.id.nav_view);
         View navHeader = navigationView.getHeaderView(0);
         mName = navHeader.findViewById(R.id.name);
         mEmail = navHeader.findViewById(R.id.email);
         mProfilePic = navHeader.findViewById(R.id.profile);
-
+        storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference riversRef = storageRef.child("images/userDP/" + FirebaseAuth.getInstance().getUid()+ ".jpg");
         //mProfilePic = findViewById(R.id.profile);
         //mName = findViewById(R.id.name);
        // mEmail = findViewById(R.id.email);
-        storageRef = FirebaseStorage.getInstance().getReference();
+       /* storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference riversRef = storageRef.child("images/userDP/" + FirebaseAuth.getInstance().getUid()+ ".jpg");
 
-        //Glide.with(this /* context */).load(riversRef.getDownloadUrl()).into(mProfilePic);
+        Glide.with(this /* context *///).load(riversRef.getDownloadUrl()).into(mProfilePic);
 
-        /*try {
+        try {
             final File localFile = File.createTempFile("images","jpg");
            // Toast.makeText(getApplicationContext(),"Local file created",Toast.LENGTH_LONG).show();
             riversRef.getFile(localFile)
@@ -105,8 +95,9 @@ public class home extends AppCompatActivity {
                         @Override
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             try {
-                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), localFile);
-                                mProfilePic.setImageBitmap(bitmap);
+                                Glide.with(getApplicationContext()).load(localFile).into(mProfilePic);
+                                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), localFile);
+                                //mProfilePic.setImageBitmap(bitmap);
                             }catch (Exception e) {
                                 Toast.makeText(getApplicationContext(),"Exception occurred",Toast.LENGTH_SHORT).show();
                             }
@@ -119,7 +110,7 @@ public class home extends AppCompatActivity {
             });
         }catch (IOException e){
             Toast.makeText(this,"Exception occurred",Toast.LENGTH_SHORT).show();
-        }*/
+        }
 
         fDb.collection("Users")
                 //.document(FirebaseAuth.getInstance().getCurrentUser().getEmail())
