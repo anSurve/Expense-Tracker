@@ -50,4 +50,9 @@
     <string name="add_investments">"Add Investments"</string>
     <string name="add_lent">"Add Lent Money"</string>
     <string name="add_borrowed">"Add Borrowed Money"</string>
+
+    <string name="select_category">"Select a section :"</string>
+    <string name="category_list">Below is the list of categories :</string>
+    <string name="show_categories">Show Categories</string>
+    <string name="enter_amount">Enter Amount</string>
 </resources>

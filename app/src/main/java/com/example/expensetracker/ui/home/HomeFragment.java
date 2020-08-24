@@ -1,9 +1,11 @@
 package com.example.expensetracker.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -17,6 +19,7 @@ import com.example.expensetracker.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private Button btn_add_expense;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -28,6 +31,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
+            }
+        });
+
+        btn_add_expense = root.findViewById(R.id.btn_add_expense);
+
+        btn_add_expense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),com.example.expensetracker.addExpense.class));
             }
         });
         return root;
