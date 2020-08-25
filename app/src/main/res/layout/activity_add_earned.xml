@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".addExpense">
+        tools:context=".addEarned">
 
         <TextView
             android:id="@+id/date_label"
@@ -48,30 +48,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/timestamp" />
 
-        <Spinner
-            android:id="@+id/new_category_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amount"  />
-
         <EditText
-            android:id="@+id/given_to"
+            android:id="@+id/from"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
             android:ems="15"
-            android:visibility="gone"
-            android:hint="Given to"
+            android:hint="Earned from"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/new_category_name" />
+            app:layout_constraintTop_toBottomOf="@+id/amount" />
 
         <EditText
             android:id="@+id/description"
@@ -85,7 +73,7 @@
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/given_to" />
+            app:layout_constraintTop_toBottomOf="@+id/from" />
 
         <Button
             android:id="@+id/submit"
@@ -102,11 +90,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginEnd="32dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/description"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/amount" />
+            app:layout_constraintEnd_toEndOf="@+id/from"
+            app:layout_constraintStart_toStartOf="@+id/from"
+            app:layout_constraintTop_toTopOf="@+id/amount"
+            app:layout_constraintVertical_bias="0.3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

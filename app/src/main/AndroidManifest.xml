@@ -16,10 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".addEarned"
+            android:parentActivityName=".home" />
         <activity
             android:name=".addExpense"
-            android:parentActivityName=".home" />
-        <!-- activity android:name=".ImagePickerActivity"></activity -->
+            android:parentActivityName=".home" /> <!-- activity android:name=".ImagePickerActivity"></activity -->
         <activity
             android:name=".home"
             android:label="@string/title_activity_home"

@@ -19,7 +19,7 @@ import com.example.expensetracker.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private Button btn_add_expense;
+    private Button btn_add_expense,btn_add_earned;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,11 +35,19 @@ public class HomeFragment extends Fragment {
         });
 
         btn_add_expense = root.findViewById(R.id.btn_add_expense);
+        btn_add_earned = root.findViewById(R.id.btn_add_earning);
 
         btn_add_expense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),com.example.expensetracker.addExpense.class));
+            }
+        });
+
+        btn_add_earned.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),com.example.expensetracker.addEarned.class));
             }
         });
         return root;

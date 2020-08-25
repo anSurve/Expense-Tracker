@@ -1,9 +1,11 @@
 package com.example.expensetracker.ui.Categories;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -19,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,10 +47,11 @@ public class Categories extends Fragment {
     private CategoriesViewModel mViewModel;
     private FirebaseFirestore fDb;
     private Spinner Categories;
-    private Button btn_show_category;
+    private Button btn_show_category, btn_add_Category;
     private TextView CategoriesHeader;
     private LinearLayout categoriesView;
 
+    private Dialog myDialog;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -59,6 +63,8 @@ public class Categories extends Fragment {
         btn_show_category = root.findViewById(R.id.show_category);
         CategoriesHeader = root.findViewById(R.id.Category_list);
         categoriesView = root.findViewById(R.id.CategoriesView);
+        btn_add_Category = root.findViewById(R.id.addCategory);
+        myDialog = new Dialog(getActivity());
         mViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -97,8 +103,16 @@ public class Categories extends Fragment {
             @Override
             public void onClick(View v) {
                 CategoriesHeader.setVisibility(View.VISIBLE);
+                btn_add_Category.setVisibility(View.VISIBLE);
                 String Section = Categories.getSelectedItem().toString();
                 fetchCategory(Section);
+            }
+        });
+
+        btn_add_Category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addCategory();
             }
         });
 
@@ -107,6 +121,7 @@ public class Categories extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> spinner, View container,int position, long id) {
                 CategoriesHeader.setVisibility(View.INVISIBLE);
+                btn_add_Category.setVisibility(View.INVISIBLE);
                 if(categoriesView.getChildCount() > 0)
                     categoriesView.removeAllViews();
             }
@@ -140,7 +155,7 @@ public class Categories extends Fragment {
         categoriesView.addView(ll);
     }
 
-    public void fetchCategory(String Section){
+    private void fetchCategory(String Section){
         fDb.collection("Categories")
                 .whereEqualTo("user_id", "Any")
                 .whereEqualTo("category_for", Section)
@@ -158,4 +173,20 @@ public class Categories extends Fragment {
                     }
                 });
     }
+
+    private void addCategory(){
+        TextView txtClose, txtSection;
+        myDialog.setContentView(R.layout.category_popup);
+        txtClose = myDialog.findViewById(R.id.close_txt);
+        txtSection = myDialog.findViewById(R.id.section_label);
+        txtSection.setText("Add Category under section "+Categories.getSelectedItem().toString());
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.show();
+    }
+
 }
