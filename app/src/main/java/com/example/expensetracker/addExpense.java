@@ -82,6 +82,26 @@ public class addExpense extends AppCompatActivity {
                     }
                 });
 
+        fDb.collection("Categories")
+                .whereEqualTo("user_id", fAuth.getUid())
+                .whereEqualTo("category_for","Expense")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                if(! ls_categories.contains(document.get("category_name").toString())){
+                                    ls_categories.add(document.get("category_name").toString());
+                                }
+                            }
+                            dataAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Failed to fetch data", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
         Category.setOnItemSelectedListener(new Spinner.OnItemSelectedListener()
         {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){

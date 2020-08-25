@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
@@ -27,20 +29,28 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.expensetracker.MainActivity;
 import com.example.expensetracker.R;
 import com.example.expensetracker.home;
+import com.example.expensetracker.signup;
 import com.example.expensetracker.ui.LentBorrowed.LentBorrowedViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Categories extends Fragment {
 
@@ -102,6 +112,7 @@ public class Categories extends Fragment {
         btn_show_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearAllData();
                 CategoriesHeader.setVisibility(View.VISIBLE);
                 btn_add_Category.setVisibility(View.VISIBLE);
                 String Section = Categories.getSelectedItem().toString();
@@ -120,10 +131,11 @@ public class Categories extends Fragment {
 
             @Override
             public void onItemSelected(AdapterView<?> spinner, View container,int position, long id) {
-                CategoriesHeader.setVisibility(View.INVISIBLE);
+                /*CategoriesHeader.setVisibility(View.INVISIBLE);
                 btn_add_Category.setVisibility(View.INVISIBLE);
                 if(categoriesView.getChildCount() > 0)
-                    categoriesView.removeAllViews();
+                    categoriesView.removeAllViews();*/
+                clearAllData();
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -139,7 +151,7 @@ public class Categories extends Fragment {
 
     }
 
-    public void createTextView(String text) {
+    private void createTextView(String text) {
         final TextView textView_item_name = new TextView(getActivity());
         final LinearLayout.LayoutParams _params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -156,6 +168,7 @@ public class Categories extends Fragment {
     }
 
     private void fetchCategory(String Section){
+
         fDb.collection("Categories")
                 .whereEqualTo("user_id", "Any")
                 .whereEqualTo("category_for", Section)
@@ -172,21 +185,74 @@ public class Categories extends Fragment {
                         }
                     }
                 });
+        fDb.collection("Categories")
+                .whereEqualTo("user_id", FirebaseAuth.getInstance().getUid())
+                .whereEqualTo("category_for", Section)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                createTextView(document.get("category_name").toString());
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Failed to fetch data", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 
     private void addCategory(){
         TextView txtClose, txtSection;
+        EditText categoryName;
+        Button addCategory;
         myDialog.setContentView(R.layout.category_popup);
         txtClose = myDialog.findViewById(R.id.close_txt);
         txtSection = myDialog.findViewById(R.id.section_label);
-        txtSection.setText("Add Category under section "+Categories.getSelectedItem().toString());
+        addCategory = myDialog.findViewById(R.id.btn_add_category);
+        categoryName = myDialog.findViewById(R.id.new_category_name);
+
+        String categorySectionString = Categories.getSelectedItem().toString();
+        txtSection.setText("Add Category under section "+categorySectionString);
         txtClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myDialog.dismiss();
             }
         });
+        addCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String categorNameString = categoryName.getText().toString();
+                if(categorNameString.isEmpty()){
+                    categoryName.setError("Please enter category name");
+                    return;
+                }
+                addCategoryToDB(categorNameString,categorySectionString);
+                myDialog.dismiss();
+            }
+        });
         myDialog.show();
     }
 
+    private void addCategoryToDB(String catName, String CatSection){
+        final Map<String, Object> Category = new HashMap<>();
+        Category.put("category_name", catName);
+        Category.put("category_for", CatSection);
+        Category.put("user_id", FirebaseAuth.getInstance().getUid());
+        fDb.collection("Categories").add(Category).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(getActivity(), "Category Added successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void clearAllData(){
+        CategoriesHeader.setVisibility(View.INVISIBLE);
+        btn_add_Category.setVisibility(View.INVISIBLE);
+        if(categoriesView.getChildCount() > 0)
+            categoriesView.removeAllViews();
+    }
 }
