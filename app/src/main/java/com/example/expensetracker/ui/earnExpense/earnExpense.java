@@ -36,7 +36,6 @@ public class earnExpense extends Fragment {
     private TabLayout tabLayout;
     private LinearLayout mainView;
     private FirebaseFirestore fDb;
-    private TextView txt;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
