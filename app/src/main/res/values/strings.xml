@@ -55,4 +55,6 @@
     <string name="category_list">Below is the list of categories :</string>
     <string name="show_categories">Show Categories</string>
     <string name="enter_amount">Enter Amount</string>
+    <string name="earnings">Earnings</string>
+    <string name="expenditure">Expenditure</string>
 </resources>

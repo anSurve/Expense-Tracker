@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -119,11 +121,15 @@ public class Categories extends Fragment {
         btn_show_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearAllData();
-                CategoriesHeader.setVisibility(View.VISIBLE);
-                btn_add_Category.setVisibility(View.VISIBLE);
-                String Section = Categories.getSelectedItem().toString();
-                fetchCategory(Section);
+                try{
+                    String Section = Categories.getSelectedItem().toString();
+                    clearAllData();
+                    CategoriesHeader.setVisibility(View.VISIBLE);
+                    btn_add_Category.setVisibility(View.VISIBLE);
+                    fetchCategory(Section);
+                }catch (Exception e){
+                    Toast.makeText(getActivity(), "Wait till the data is loaded", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -193,7 +199,7 @@ public class Categories extends Fragment {
         //final TableRow categoryRow = new TableRow(getActivity());
         final TextView textView_item_name = new TextView(getActivity());
         final View nView = new View(getActivity());
-        final Button btnDel = new Button(getActivity());
+        final ImageButton btnDel = new ImageButton(getActivity());
         final LinearLayout.LayoutParams _viewparams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -203,7 +209,7 @@ public class Categories extends Fragment {
         final LinearLayout.LayoutParams _paramsline = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, 2);
         final LinearLayout.LayoutParams _btnparams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                80, ViewGroup.LayoutParams.MATCH_PARENT);
 
         int[] attrs = {android.R.attr.background};
         TypedArray ta = getActivity().obtainStyledAttributes(R.style.Divider, attrs);
@@ -218,10 +224,11 @@ public class Categories extends Fragment {
         _btnparams.gravity=Gravity.END;
         btnDel.setLayoutParams(_btnparams);
        // btnDel.setL
-        btnDel.setGravity(Gravity.CENTER);
-        btnDel.setBackgroundColor(Color.RED);
+        Drawable myIcon = getResources().getDrawable(R.drawable.ic_delete_forever_black_24dp,getActivity().getTheme());
+        btnDel.setBackground(myIcon);
+        /*btnDel.setGravity(Gravity.CENTER);
         btnDel.setText("Del");
-        btnDel.setTextColor(Color.WHITE);
+        btnDel.setTextColor(Color.WHITE);*/
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
