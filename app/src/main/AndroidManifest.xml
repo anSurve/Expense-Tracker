@@ -16,13 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".addBorrowedMoney"
+            android:parentActivityName=".home" />
+        <activity android:name=".addLentMoney"
+            android:parentActivityName=".home" />
+        <activity android:name=".addLoan"
+            android:parentActivityName=".home" />
+        <activity android:name=".addInvestment"
+            android:parentActivityName=".home" />
         <activity android:name=".addEarned"
             android:parentActivityName=".home" />
-        <activity
-            android:name=".addExpense"
+        <activity android:name=".addExpense"
             android:parentActivityName=".home" /> <!-- activity android:name=".ImagePickerActivity"></activity -->
-        <activity
-            android:name=".home"
+        <activity android:name=".home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".signup">
@@ -34,13 +40,7 @@
         </activity>
         <activity android:name=".login" />
         <activity android:name=".MainActivity" />
-        <!--
-activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /
-        -->
-        <!-- cache directory file provider paths -->
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.expensetracker.fileprovider"

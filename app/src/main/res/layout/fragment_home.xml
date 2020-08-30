@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <!--Button
             android:id="@+id/btn_add_expense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -32,9 +32,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_home" />
+            app:layout_constraintTop_toBottomOf="@+id/text_home" /-->
 
-        <Button
+        <!--Button
             android:id="@+id/btn_add_earning"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -80,6 +80,85 @@
             android:text="@string/add_borrowed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_add_lent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_lent" /-->
+
+        <ImageButton
+            android:id="@+id/btn_add_earning"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/add_earning"
+            android:contentDescription="@string/add_earning" />
+
+        <ImageButton
+            android:id="@+id/btn_add_expense"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="25dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/add_expenditure"
+            android:contentDescription="@string/add_expenditure" />
+
+
+        <ImageButton
+            android:id="@+id/btn_add_investment"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/add_investments"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_earning"
+            app:srcCompat="@drawable/add_investment" />
+
+        <ImageButton
+            android:id="@+id/btn_add_loan"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/add_loan"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_expense"
+            app:srcCompat="@drawable/add_loan" />
+
+        <ImageButton
+            android:id="@+id/btn_add_borrowed_money"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/add_borrowed"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_investment"
+            app:srcCompat="@drawable/add_borrowed_money" />
+
+        <ImageButton
+            android:id="@+id/btn_add_lent_money"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/add_lent"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_loan"
+            app:srcCompat="@drawable/add_lent_money" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

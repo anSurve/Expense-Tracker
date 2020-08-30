@@ -37,7 +37,7 @@
     <string name="menu_send">Send</string>
     <string name="earning_expense">"Earnings / Expenses"</string>
     <string name="earning_exepnse">"Earnings / Expenses"</string>
-    <string name="menu_investments">Investments</string>
+    <string name="menu_investments">"Investments / Loans"</string>
     <string name="menu_lent_borrowed">Lent / Borrowed Money</string>
     <string name="menu_Categories">Categories</string>
     <string name="menu_sign_out">Sign Out</string>
@@ -57,4 +57,6 @@
     <string name="enter_amount">Enter Amount</string>
     <string name="earnings">Earnings</string>
     <string name="expenditure">Expenditure</string>
+    <string name="add_expenditure">Add Expenditure</string>
+    <string name="add_loan">Add Loan</string>
 </resources>

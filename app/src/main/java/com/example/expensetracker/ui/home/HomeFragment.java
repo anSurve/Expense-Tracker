@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -18,11 +19,11 @@ import com.example.expensetracker.R;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private Button btn_add_expense,btn_add_earned;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        HomeViewModel homeViewModel;
+        ImageButton btn_add_expense,btn_add_earned, btn_add_investment, btn_add_loan, btn_add_LM, btn_add_BM;
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -36,6 +37,10 @@ public class HomeFragment extends Fragment {
 
         btn_add_expense = root.findViewById(R.id.btn_add_expense);
         btn_add_earned = root.findViewById(R.id.btn_add_earning);
+        btn_add_investment = root.findViewById(R.id.btn_add_investment);
+        btn_add_loan = root.findViewById(R.id.btn_add_loan);
+        btn_add_BM = root.findViewById(R.id.btn_add_borrowed_money);
+        btn_add_LM = root.findViewById(R.id.btn_add_lent_money);
 
         btn_add_expense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +53,34 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),com.example.expensetracker.addEarned.class));
+            }
+        });
+
+        btn_add_investment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),com.example.expensetracker.addInvestment.class));
+            }
+        });
+
+        btn_add_loan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),com.example.expensetracker.addLoan.class));
+            }
+        });
+
+        btn_add_LM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),com.example.expensetracker.addLentMoney.class));
+            }
+        });
+
+        btn_add_BM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),com.example.expensetracker.addBorrowedMoney.class));
             }
         });
         return root;

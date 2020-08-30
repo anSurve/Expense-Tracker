@@ -1,13 +1,9 @@
 package com.example.expensetracker.ui.earnExpense;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +26,16 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class earnExpense extends Fragment {
 
     private EarnExpenseViewModel mViewModel;
     private TabLayout tabLayout;
     private LinearLayout mainView;
+    //private RelativeLayout mainView;
     private FirebaseFirestore fDb;
+    private GestureDetectorCompat mDetector;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -70,6 +70,7 @@ public class earnExpense extends Fragment {
 
             }
         });
+
         return root;
     }
 

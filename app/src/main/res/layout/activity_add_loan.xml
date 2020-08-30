@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".addExpense">
+        tools:context=".addLoan">
 
         <TextView
             android:id="@+id/date_label"
@@ -49,18 +49,18 @@
             app:layout_constraintTop_toBottomOf="@+id/timestamp" />
 
         <TextView
-            android:id="@+id/category_label"
+            android:id="@+id/tenure_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginStart="24dp"
-            android:text="Spent for : "
+            android:text="Tenure : "
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/amount"/>
 
         <Spinner
-            android:id="@+id/new_category_name"
+            android:id="@+id/tenure"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@+id/amount" />
 
         <EditText
-            android:id="@+id/given_to"
+            android:id="@+id/newTenure"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -78,10 +78,11 @@
             android:layout_marginEnd="24dp"
             android:ems="15"
             android:visibility="gone"
-            android:hint="Given to"
+            android:hint="Tenure in Months"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/new_category_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tenure_label" />
 
         <EditText
             android:id="@+id/description"
@@ -95,7 +96,7 @@
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/given_to" />
+            app:layout_constraintTop_toBottomOf="@+id/newTenure" />
 
         <Button
             android:id="@+id/submit"
@@ -116,7 +117,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/amount" />
+            app:layout_constraintTop_toTopOf="@+id/amount"
+            app:layout_constraintVertical_bias="0.3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
