@@ -29,7 +29,7 @@
             android:title="@string/menu_Categories" />
     </group>
 
-    <item android:title="Communicate">
+    <!--item android:title="Communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
@@ -39,6 +39,15 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_send" />
+            <item
+                android:id="@+id/nav_sign_out"
+                android:icon="@drawable/ic_power_settings_new_black_24dp"
+                android:title="@string/menu_sign_out" />
+        </menu>
+    </item-->
+
+    <item android:title="Exit">
+        <menu>
             <item
                 android:id="@+id/nav_sign_out"
                 android:icon="@drawable/ic_power_settings_new_black_24dp"

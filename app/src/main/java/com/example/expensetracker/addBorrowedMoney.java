@@ -82,7 +82,7 @@ public class addBorrowedMoney extends AppCompatActivity {
         final Map<String, Object> transaction = new HashMap<>();
         transaction.put("amount", amt);
         transaction.put("description",descriptionText);
-        transaction.put("lent_to",borrowed);
+        transaction.put("borrowed_from",borrowed);
         transaction.put("time",timestamp.getTime());
         transaction.put("transaction_type","Borrow");
         transaction.put("user_id",fAuth.getUid());

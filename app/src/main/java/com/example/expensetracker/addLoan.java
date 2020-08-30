@@ -28,7 +28,7 @@ import java.util.Map;
 public class addLoan extends AppCompatActivity {
 
     private Button btn_submit;
-    private EditText amount, description, newTenure;
+    private EditText amount, description, newTenure, from;
     private DatePicker time;
     private FirebaseAuth fAuth;
     private FirebaseFirestore fDb;
@@ -42,6 +42,7 @@ public class addLoan extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Loan");
         time = findViewById(R.id.timestamp);
         amount = findViewById(R.id.amount);
+        from = findViewById(R.id.from);
         Tenure = findViewById(R.id.tenure);
         newTenure = findViewById(R.id.newTenure);
         description = findViewById(R.id.description);
@@ -83,6 +84,7 @@ public class addLoan extends AppCompatActivity {
 
     private void addLoanToDB(){
         final String amtString = amount.getText().toString();
+        final String fromString = from.getText().toString();
         final String descriptionText = description.getText().toString();
         String tenure = Tenure.getSelectedItem().toString();
 
@@ -90,8 +92,12 @@ public class addLoan extends AppCompatActivity {
             amount.setError("Amount is required");
             return;
         }
+        if (fromString.isEmpty()){
+            from.setError("Where did you take loan from ?");
+            return;
+        }
         if (tenure == "Other") {
-            tenure = newTenure.getText().toString();
+            tenure = newTenure.getText().toString() + " Months";
             if(tenure.isEmpty()){
                 newTenure.setError("Maturity term is required");
                 return;
@@ -108,6 +114,7 @@ public class addLoan extends AppCompatActivity {
 
         final Map<String, Object> transaction = new HashMap<>();
         transaction.put("amount", amt);
+        transaction.put("from",fromString);
         transaction.put("description",descriptionText);
         transaction.put("tenure",tenure);
         transaction.put("time",timestamp.getTime());
