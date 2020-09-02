@@ -39,19 +39,19 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
-/*    implementation 'com.github.yalantis:ucrop:2.2.5'
-    implementation 'com.squareup.okio:okio:1.15.0'
+    implementation 'com.github.yalantis:ucrop:2.2.2'
+    /* implementation 'com.squareup.okio:okio:1.15.0'
 
-    //Butterknife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+     //Butterknife
+     implementation 'com.jakewharton:butterknife:8.8.1'
+     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    //dexter permissions
-    implementation "com.karumi:dexter:5.0.0"
+     //dexter permissions
+     implementation "com.karumi:dexter:5.0.0"
 
-    // circular imageview
-    implementation 'com.mikhaellopez:circularimageview:3.2.0'
-*/
+     // circular imageview
+     implementation 'com.mikhaellopez:circularimageview:3.2.0'
+ */
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'com.github.bumptech.glide:annotations:4.7.1'

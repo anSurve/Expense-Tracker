@@ -80,14 +80,6 @@ public class home extends AppCompatActivity {
         mProfilePic = navHeader.findViewById(R.id.profile);
         storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference riversRef = storageRef.child("images/userDP/" + FirebaseAuth.getInstance().getUid()+ ".jpg");
-        //mProfilePic = findViewById(R.id.profile);
-        //mName = findViewById(R.id.name);
-       // mEmail = findViewById(R.id.email);
-       /* storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference riversRef = storageRef.child("images/userDP/" + FirebaseAuth.getInstance().getUid()+ ".jpg");
-
-        Glide.with(this /* context *///).load(riversRef.getDownloadUrl()).into(mProfilePic);
-
         try {
             final File localFile = File.createTempFile("images","jpg");
            // Toast.makeText(getApplicationContext(),"Local file created",Toast.LENGTH_LONG).show();
@@ -130,6 +122,25 @@ public class home extends AppCompatActivity {
                         }
                     }
                 });
+
+        mProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),profile.class));
+            }
+        });
+        mName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),profile.class));
+            }
+        });
+        mEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),profile.class));
+            }
+        });
     }
 
 
