@@ -3,12 +3,9 @@ package com.example.expensetracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -108,21 +105,12 @@ public class setDp extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK  && data != null  && data.getData() != null) {
             filePath = data.getData();
-            startCrop(filePath);
-            /*filePath = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filePath);
-                userDp.setImageBitmap(bitmap);
-            }catch (IOException e) {
-                e.printStackTrace();
+                startCrop(filePath);
+            }catch (Exception e){
+                fun_setDP();
             }
-            performCrop();*/
         }
-        /*else if (requestCode == PIC_CROP  && resultCode == RESULT_OK ) {
-            Bundle extras = data.getExtras();
-            Bitmap thePic = extras.getParcelable("data");
-            userDp.setImageBitmap(thePic);
-        }*/
         else if(requestCode == UCrop.REQUEST_CROP){
             Uri imageResultCrop = UCrop.getOutput(data);
             if(imageResultCrop != null){
@@ -131,42 +119,12 @@ public class setDp extends AppCompatActivity {
         }
     }
 
-    private void performCrop(){
-        try {
-            //call the standard crop action intent (the user device may not support it)
-            Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            //indicate image type and Uri
-            cropIntent.setDataAndType(filePath, "image/*");
-            //set crop properties
-            cropIntent.putExtra("crop", "true");
-            //indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 1);
-            cropIntent.putExtra("aspectY", 1);
-            cropIntent.putExtra("scale", true);
-            //indicate output X and Y
-            cropIntent.putExtra("outputX", 256);
-            cropIntent.putExtra("outputY", 256);
-            //retrieve data on return
-            cropIntent.putExtra("return-data", true);
-            //start the activity - we handle returning in onActivityResult
-            if (cropIntent.resolveActivity(getPackageManager()) != null) {
-                startActivityForResult(cropIntent, PIC_CROP);
-            }
-        }
-        catch(ActivityNotFoundException anfe){
-            //display an error message
-            String errorMessage = "Whoops - your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
-
     public void startCrop(@NonNull Uri uri){
         String destFileName = SAMPLE_CROPPED_IMG +".jpg";
 
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(),destFileName)));
         uCrop.withAspectRatio(1,1);
-        uCrop.withMaxResultSize(300,300);
+        uCrop.withMaxResultSize(600,600);
         uCrop.withOptions(getCropOptions());
 
         uCrop.start(setDp.this);
@@ -179,6 +137,7 @@ public class setDp extends AppCompatActivity {
         //options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
         options.setHideBottomControls(false);
         options.setFreeStyleCropEnabled(true);
+
 
         options.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         options.setToolbarColor(getResources().getColor(R.color.colorPrimary));

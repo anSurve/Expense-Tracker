@@ -1,8 +1,6 @@
 package com.example.expensetracker;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -10,11 +8,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -107,7 +101,7 @@ public class home extends AppCompatActivity {
 
         fDb.collection("Users")
                 //.document(FirebaseAuth.getInstance().getCurrentUser().getEmail())
-                .whereEqualTo("Email", FirebaseAuth.getInstance().getCurrentUser().getEmail())
+                .whereEqualTo("user_id", FirebaseAuth.getInstance().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -118,7 +112,7 @@ public class home extends AppCompatActivity {
                                 mEmail.setText(document.get("Email").toString());
                             }
                         } else {
-                            Toast.makeText(home.this, "Failed to fetch data", Toast.LENGTH_LONG).show();
+                            Toast.makeText(home.this, "Failed to fetch data for "+FirebaseAuth.getInstance().getUid(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
